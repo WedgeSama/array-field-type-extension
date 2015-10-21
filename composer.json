@@ -25,5 +25,13 @@
         "psr-4": {
             "Bolt\\Extension\\WS\\ArrayFieldExtension\\": "src"
         }
+    },
+    "extra": {
+        "bolt-screenshots": [
+            "preview.png"
+        ],
+        "branch-alias": {
+            "dev-master": "1.0.*"
+        }
     }
 }
