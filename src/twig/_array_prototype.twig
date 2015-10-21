@@ -1,0 +1,41 @@
+{#=== Options ============================================================================#}
+
+{% set attr_btn = {
+    class:                  option.class_btn_remove,
+    type:                   'button',
+    id:                     context.array_options.btn_remove_id,
+    href:                   '#'
+} %}
+
+{#=== FIELDSET ============================================================================#}
+
+
+<div class="array-list-item">
+    <a{{ macro.attr(attr_btn) }}>
+        <i class="fa fa-times"></i>
+    </a>
+
+    {% for group_name, group in context.groups %}
+    {{ include('_array_fields.twig') }}
+    {% endfor %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#{{ context.array_options.btn_remove_id }}').on('click', function (e) {
+                e.preventDefault();
+
+                if (confirm("{{ option.remove_message }}")) {
+                    var $item = $(this).closest('.array-list-item');
+                    var $container = $item.closest('.array-list-container');
+                    var $noItem = $container.find('> p.array-no-item');
+
+                    if ($container.children('div').length <= 1) {
+                        $noItem.removeClass('hidden');
+                    }
+
+                    $item.remove();
+                }
+            });
+        });
+    </script>
+</div>

@@ -1,0 +1,42 @@
+{# COPY FROM editcontent/_fields.twig with change on key and name for child field #}
+{% import '_macro/_macro.twig' as macro %}
+
+{% for key, field in context.contenttype.fields %}
+    {% if group_name == field.group %}
+
+        <div class="form-group" data-fieldtype="{{ field.type }}">
+            {# Prefix #}
+            {% if field.prefix is defined and field.prefix is not empty %}
+                <div class="prefix">
+                    {{ field.prefix|markdown }}
+                </div>
+            {% endif %}
+
+            {# Fields #}
+            {% set labelkey = field.label ?: key|ucfirst %}
+
+            {% for fieldtype in context.fields %}
+                {% if field.type == fieldtype.name %}
+                    {% include fieldtype.template with {
+                        'key': field.real_id,
+                        'name': field.real_name,
+                        'contentkey': key
+                    } %}
+                {% endif %}
+            {% endfor %}
+
+            {# Postfix #}
+            {% if field.postfix is defined and field.postfix is not empty %}
+                <div class="postfix">
+                    {{ field.postfix|markdown }}
+                </div>
+            {% endif %}
+
+            {# Divider #}
+            {% if field.separator is defined and field.separator == true %}
+                <hr>
+            {% endif %}
+        </div>
+
+    {% endif %}
+{% endfor %}

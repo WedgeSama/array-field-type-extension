@@ -1,0 +1,43 @@
+#editcontent fieldset.array {
+    .array-list-holder {
+
+    }
+
+    .array-list-container {
+        border: 1px solid #E0E0E0;
+        padding: 0;
+        border-radius: 3px;
+        width: 100%;
+        background: #FFF;
+    }
+
+    .array-list-item {
+        position: relative;
+        padding: 4px 6px;
+        margin: 6px;
+        border: 2px solid #F0F0F0;
+        border-radius: 3px;
+        background: #F6F6F6;
+    }
+
+    .array-no-item {
+        padding: 8px;
+        color: #999;
+        margin: 0;
+        font-style: italic;
+    }
+
+    .array-remove-button {
+        position: absolute;
+        right: 8px;
+        padding: 5px;
+        cursor: pointer;
+        color: #999;
+        border-radius: 3px;
+        z-index: 10;
+
+        &:hover {
+            background: #DCDCDC;
+        }
+    }
+}

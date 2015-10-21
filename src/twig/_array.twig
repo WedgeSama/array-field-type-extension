@@ -1,0 +1,75 @@
+{#=== INIT ================================================================================#}
+
+{% set prototype_context = array_prototype_context(context, contentkey) %}
+{% set parent_key = contentkey %}
+{% set children_contexts = array_children_contexts(context, contentkey) %}
+
+{#=== Options ============================================================================#}
+
+{% set option = {
+    class_container:        field.class_container|default('array-list-container'),
+    class_btn_add:          field.class_btn|default('btn btn-secondary'),
+    class_btn_remove:       field.class_btn|default('array-remove-button'),
+    remove_message:         __('Are you sure you want to remove this item?'),
+    no_item:                __('No item in this list yet.')
+}%}
+
+{% set attr_container = {
+    class:                  option.class_container,
+    'data-name':            name,
+    'data-prototype':       include('_array_prototype.twig', {'context': prototype_context}),
+    id:                     key~'_container'
+} %}
+
+{% set attr_btn = {
+    class:                  option.class_btn_add,
+    type:                   'button',
+    id:                     key~'_add'
+} %}
+
+{#=== FIELDSET ============================================================================#}
+
+<fieldset class="array">
+    <label class="col-sm-12 control-label">{{field.label|default(labelkey)}}</label>
+
+    <div class="array-list-holder col-sm-12">
+        <div{{ macro.attr(attr_container) }}>
+        {% for child_context in children_contexts %}
+            {{ include('_array_prototype.twig', {'context': child_context}) }}
+        {% endfor %}
+            <p class="array-no-item{% if children_contexts|length > 0 %} hidden{% endif %}">
+                {{ option.no_item }}
+            </p>
+        </div>
+        <div class="clearfix">
+            <div class="button-wrap array-button-group">
+                <button{{ macro.attr(attr_btn) }} data-prototype-add>
+                    <i class="fa fa-plus"></i>
+                    Add
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var $container = $('#{{ key }}_container');
+            var $noItem = $container.find('> p.array-no-item');
+            var prototype = $container.data('prototype');
+            $container.data('index', $container.children('div').length);
+
+            $('#{{ key }}_add').on('click', function (e) {
+                e.preventDefault();
+                var index = $container.data('index');
+                index++;
+
+                $container.data('index', index);
+                $container.append(prototype.replace(/__name__/g, index));
+
+                if ($container.children('div').length > 0) {
+                    $noItem.addClass('hidden');
+                }
+            });
+        });
+    </script>
+</fieldset>

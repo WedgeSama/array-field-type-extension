@@ -1,0 +1,29 @@
+{
+    "name": "ws/array-field-type-extension",
+    "description": "Add an array field type for Bolt.",
+    "type": "bolt-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benjamin Georgeault",
+            "email": "github@wedgesama.fr"
+        }
+    ],
+    "keywords": [
+        "field",
+        "array",
+        "backend",
+        "collection"
+    ],
+    "require": {
+        "bolt/bolt": ">=2.0.0,<3.0.0"
+    },
+    "autoload": {
+        "files": [
+            "init.php"
+        ],
+        "psr-4": {
+            "Bolt\\Extension\\WS\\ArrayFieldExtension\\": "src"
+        }
+    }
+}
