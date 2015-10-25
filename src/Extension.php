@@ -83,8 +83,8 @@ class Extension extends BaseExtension
         $parentValues = $context['content']->values;
         $values = array();
         if (array_key_exists($key, $parentValues)) {
-            $values = json_decode($parentValues[$key], true);
-            $values = array_values($values);
+            $json = json_decode($parentValues[$key], true);
+            $values = ($json) ? array_values($json) : array();
         }
 
         foreach ($values as $num => $vFields) {
