@@ -37,7 +37,7 @@ class ArrayField implements FieldInterface
     {
         return array(
             'children' => array(),
-            'default' => ''
+            'nullable' => true,
         );
     }
 }
