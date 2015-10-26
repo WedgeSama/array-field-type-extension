@@ -59,7 +59,7 @@ class Extension extends BaseExtension
     public function contentParser(Content $content)
     {
         foreach ($content->contenttype['fields'] as $key => $options) {
-            if ($options['type'] == 'array') {
+            if ($options['type'] == 'array' && is_string($content->values[$key])) {
                 $values = json_decode($content->values[$key], true);
                 $content->values[$key] = array_values($values);
             }
@@ -84,7 +84,7 @@ class Extension extends BaseExtension
         $values = array();
         if (array_key_exists($key, $parentValues)) {
             $json = json_decode($parentValues[$key], true);
-            $values = ($json) ? array_values($json) : array();
+            $values = $json?array_values($json):array();
         }
 
         foreach ($values as $num => $vFields) {
