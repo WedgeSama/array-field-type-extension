@@ -49,14 +49,50 @@ foos:
 </a>
 ```
 
+Base field type status (and Known issues)
+-----------------------------------------
+
+### Base field type 100% working
+
+- `text`
+- `templateselect`
+- `textarea`
+- `select`
+- `checkbox`
+- `date`
+- `datetime`
+- `integer`
+- `float`
+
+### Base field type 50% working (with missing actions)
+
+- `file` (can select from server but cannot upload new file)
+- `image` (same has `file`)
+- `html` (just normal textarea, do not display the editor)
+- `markdown` (same has `html`)
+
+### Base field type not working
+
+- `imagelist`
+- `filelist`
+- `video`
+- `geolocation`
+
 TODO
 ----
+
 - Use cascade array (currently, only work with 1 deep).
 - Make customizable template (add possibilities and improve doc).
 - Find a way to parse content record without using `array_content_parser` in template (help welcome on this one).
 - Translations?
 - Make the list sortable.
 - Multi selection for delete items.
+
+Known issues with third extension
+---------------------------------
+
+Nothing report yet.
+
 
 License
 -------

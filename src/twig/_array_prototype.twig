@@ -36,6 +36,11 @@
                     $item.remove();
                 }
             });
+
+            {% if is_prototype is defined and is_prototype == "true" %}
+            {# Run again base field types init. #}
+            Bolt.app.run();
+            {% endif %}
         });
     </script>
 </div>

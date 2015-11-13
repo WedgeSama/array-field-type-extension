@@ -17,7 +17,7 @@
 {% set attr_container = {
     class:                  option.class_container,
     'data-name':            name,
-    'data-prototype':       include('_array_prototype.twig', {'context': prototype_context}),
+    'data-prototype':       include('_array_prototype.twig', {'context': prototype_context, 'is_prototype': 'true'}),
     id:                     key~'_container'
 } %}
 
