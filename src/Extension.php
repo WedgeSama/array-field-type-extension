@@ -61,7 +61,7 @@ class Extension extends BaseExtension
         foreach ($content->contenttype['fields'] as $key => $options) {
             if ($options['type'] == 'array' && is_string($content->values[$key])) {
                 $values = json_decode($content->values[$key], true);
-                $content->values[$key] = array_values($values);
+                $content->values[$key] = is_array($values)?array_values($values):null;
             }
         }
 
