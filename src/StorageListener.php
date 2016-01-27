@@ -40,7 +40,7 @@ class StorageListener implements EventSubscriberInterface
         $content = $event->getContent();
 
         foreach ($content->contenttype['fields'] as $key => $options) {
-            if ($options['type'] == 'array') {
+            if ($options['type'] == 'array' && is_array($content->values[$key]) === true) {
                 $content->values[$key] = json_encode(array_values($content->values[$key]));
             }
         }
